@@ -1,0 +1,134 @@
+
+/* Navbar container */
+.navBar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 6%;
+  background-image: linear-gradient(180deg , rgba(0,0,0,0.7) 10% , transparent);
+  z-index: 1;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+/* Left side: Logo + Menu */
+.navBar-left {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.navBar-left img {
+  height: 35px;
+  cursor: pointer;
+}
+
+.navBar-left ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.navBar-left ul li {
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.navBar-left ul li:hover {
+  color: #b3b3b3;
+}
+
+/* Right side: icons + profile */
+.navBar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navBar-right .icons {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  filter: brightness(0) invert(1);
+}
+
+.navBar-right p {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Profile + dropdown */
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.navbar-profile .profile {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+}
+
+.navbar-profile img:last-child {
+  width: 12px;
+  height: 12px;
+}
+
+/* Dropdown menu */
+.navbar-profile .dropdown {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: #191919;
+  padding: 10px 15px;
+  border-radius: 4px;
+  display: none;
+  white-space: nowrap;
+  z-index: 200;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar-profile .dropdown p {
+  font-size: 13px;
+  color: white;
+  cursor: pointer;
+  margin: 0;
+  padding: 5px 0;
+  transition: color 0.2s ease;
+}
+
+.navbar-profile .dropdown p:hover {
+  color: #b3b3b3;
+}
+
+/* Show dropdown on hover */
+.navbar-profile:hover .dropdown {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .navBar-left ul li {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navBar {
+    padding: 0 20px;
+  }
+
+  .navBar-right p {
+    display: none;
+  }
+}
