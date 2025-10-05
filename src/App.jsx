@@ -5,6 +5,8 @@ import Login from './Components/Pages/Login/Login'
 import Player from './Components/Pages/Player/Player'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './fireBase'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const App = () => {
 
@@ -24,6 +26,7 @@ const App = () => {
 
   return (
     <div>
+      <ToastContainer theme='dark'/>
       <Routes>
         <Route path='/' element = {<Home/>}/>
         <Route path='/login' element = {<Login/>}/>

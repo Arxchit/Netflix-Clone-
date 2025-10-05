@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Navbar.css'
 import search from '../../assets/search_icon.svg'
 import bellIcon from '../../assets/bell_icon.svg'
@@ -7,19 +7,37 @@ import caret_icon from '../../assets/caret_icon.svg'
 import { logOut } from '../../fireBase'
 
 const Navbar = () => {
-
   const navRef = useRef()
+  const profileRef = useRef()
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
+  // Navbar dark on scroll
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const handleScroll = () => {
       if (window.scrollY >= 80) {
         navRef.current.classList.add('nav-dark')
       } else {
         navRef.current.classList.remove('nav-dark')
       }
-    })
-
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setDropdownOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen)
+  }
 
   return (
     <div className='navBar' ref={navRef}>
@@ -39,11 +57,12 @@ const Navbar = () => {
         <p>children</p>
         <img src={bellIcon} alt="" className='icons' />
 
-        <div className="navbar-profile">
+        {/* Profile dropdown */}
+        <div className="navbar-profile" ref={profileRef} onClick={toggleDropdown}>
           <img src={profile} alt="" className='profile' />
           <img src={caret_icon} alt="" />
-          <div className="dropdown">
-            <p onClick={()=> {logOut()}}>Sign Out of Netflix</p>
+          <div className={`dropdown ${dropdownOpen ? 'active' : ''}`}>
+            <p onClick={() => { logOut() }}>Sign Out of Netflix</p>
           </div>
         </div>
       </div>

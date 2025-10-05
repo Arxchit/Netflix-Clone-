@@ -116,6 +116,11 @@
   display: block;
 }
 
+/* show when dropdownOpen is true */
+.navbar-profile .dropdown.active {
+  display: block; 
+}
+
 .nav-dark {
   background: #141414;
   transition: all 0.3s ease-in-out;
