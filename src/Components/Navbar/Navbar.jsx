@@ -4,46 +4,29 @@ import search from '../../assets/search_icon.svg'
 import bellIcon from '../../assets/bell_icon.svg'
 import profile from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
+import { FaBars, FaTimes } from 'react-icons/fa'   // ✅ added react icons
 import { logOut } from '../../fireBase'
 
 const Navbar = () => {
   const navRef = useRef()
-  const profileRef = useRef()
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  // Navbar dark on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >= 80) {
-        navRef.current.classList.add('nav-dark')
-      } else {
-        navRef.current.classList.remove('nav-dark')
-      }
+      if (window.scrollY >= 80) navRef.current.classList.add('nav-dark')
+      else navRef.current.classList.remove('nav-dark')
     }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setDropdownOpen(false)
-      }
-    }
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [])
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen)
-  }
 
   return (
     <div className='navBar' ref={navRef}>
       <div className='navBar-left'>
         <img src="../../logo.png" alt="Logo" />
-        <ul>
+
+        <ul className={menuOpen ? 'active' : ''}>
           <li>Home</li>
           <li>Tv Show</li>
           <li>Movie</li>
@@ -51,18 +34,22 @@ const Navbar = () => {
           <li>My List</li>
           <li>Browse by Languages</li>
         </ul>
+
+        <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FaTimes size={24} color="white" /> : <FaBars size={24} color="white" />}
+        </div>
       </div>
+
       <div className='navBar-right'>
         <img src={search} alt="" className='icons' />
-        <p>children</p>
+        <p>Children</p>
         <img src={bellIcon} alt="" className='icons' />
 
-        {/* Profile dropdown */}
-        <div className="navbar-profile" ref={profileRef} onClick={toggleDropdown}>
+        <div className="navbar-profile">
           <img src={profile} alt="" className='profile' />
           <img src={caret_icon} alt="" />
-          <div className={`dropdown ${dropdownOpen ? 'active' : ''}`}>
-            <p onClick={() => { logOut() }}>Sign Out of Netflix</p>
+          <div className="dropdown">
+            <p onClick={() => logOut()}>Sign Out of Netflix</p>
           </div>
         </div>
       </div>

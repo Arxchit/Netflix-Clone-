@@ -1,5 +1,3 @@
-
-/* Navbar container */
 .navBar {
   position: fixed;
   top: 0;
@@ -9,18 +7,22 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 6%;
-  background-image: linear-gradient(180deg , rgba(0,0,0,0.7) 10% , transparent);
-  z-index: 1;
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.7) 10%,
+    transparent
+  );
+  z-index: 10;
   font-size: 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: background-color 0.3s ease;
 }
 
-/* Left side: Logo + Menu */
 .navBar-left {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
+  position: relative;
 }
 
 .navBar-left img {
@@ -28,10 +30,12 @@
   cursor: pointer;
 }
 
+/* --- Desktop Menu --- */
 .navBar-left ul {
   display: flex;
   list-style: none;
   gap: 20px;
+  transition: all 0.3s ease;
 }
 
 .navBar-left ul li {
@@ -44,16 +48,15 @@
   color: #b3b3b3;
 }
 
-/* Right side: icons + profile */
+/* --- Right Side --- */
 .navBar-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.navBar-right .icons {
-  width: 24px;
-  height: 24px;
+.icons {
+  width: 22px;
   cursor: pointer;
   filter: brightness(0) invert(1);
 }
@@ -63,7 +66,7 @@
   cursor: pointer;
 }
 
-/* Profile + dropdown */
+/* --- Profile --- */
 .navbar-profile {
   display: flex;
   align-items: center;
@@ -83,8 +86,7 @@
   height: 12px;
 }
 
-/* Dropdown menu */
-.navbar-profile .dropdown {
+.dropdown {
   position: absolute;
   top: 45px;
   right: 0;
@@ -94,54 +96,129 @@
   display: none;
   white-space: nowrap;
   z-index: 200;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-  font-family: 'Poppins', sans-serif;
+  transition: all 0.2s ease-in-out;
 }
 
-.navbar-profile .dropdown p {
-  font-size: 13px;
+.dropdown p {
   color: white;
+  font-size: 13px;
   cursor: pointer;
   margin: 0;
   padding: 5px 0;
-  transition: color 0.2s ease;
 }
 
-.navbar-profile .dropdown p:hover {
+.dropdown p:hover {
   color: #b3b3b3;
 }
 
-/* Show dropdown on hover */
 .navbar-profile:hover .dropdown {
   display: block;
 }
 
-/* show when dropdownOpen is true */
-.navbar-profile .dropdown.active {
-  display: block; 
-}
-
+/* --- Scroll effect --- */
 .nav-dark {
   background: #141414;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-  height: 65px; /* slightly smaller when scrolled */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  height: 65px;
 }
 
-/* Responsive */
+/* --- Hamburger Icon --- */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* --- Tablet --- */
 @media (max-width: 1024px) {
+  .navBar-left ul {
+    gap: 15px;
+    font-size: 13px;
+  }
+  .navBar-right {
+    gap: 15px;
+  }
+}
+@media (max-width: 1000px) {
+  .navBar-left ul {
+    gap: 15px;
+    font-size: 13px;
+  }
   .navBar-left ul li {
-    display: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s 
+ease;
+}
+  .navBar-right {
+    gap: 15px;
+  }
+}
+@media (max-width: 969px) {
+  .navBar-left ul {
+    gap: 15px;
+    font-size: 13px;
+  }
+  .navBar-left ul li {
+    cursor: pointer;
+    font-size: 13px;
+    transition: color 0.2s 
+ease;
+}
+  .navBar-right {
+    gap: 15px;
+  }
+
+  .navBar-left img {
+    height: 19px;
+    cursor: pointer;
   }
 }
 
-@media (max-width: 768px) {
+
+
+/* --- Mobile --- */
+@media (max-width: 867px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .navBar-left ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    background: rgba(20, 20, 20, 0.97);
+    padding: 15px 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .navBar-left ul.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navBar-left ul li {
+    padding: 10px 0;
+    font-size: 16px;
+  }
+
   .navBar {
-    padding: 0 20px;
+    padding: 15px 5%;
   }
 
   .navBar-right p {
     display: none;
+  }
+
+  .navBar-left img {
+    height: 23px;
+    cursor: pointer;
   }
 }
 

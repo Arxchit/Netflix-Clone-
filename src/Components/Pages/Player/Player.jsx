@@ -35,7 +35,7 @@ const Player = () => {
         src={back_arrow_icon}
         alt="Back"
         className="back-arrow"
-        onClick={() => navigate(-1)} // ✅ Correct usage
+        onClick={() => navigate(-2)}
       />
 
       <iframe

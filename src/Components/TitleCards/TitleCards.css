@@ -1,36 +1,154 @@
-.title-cards{
-margin-top: 50px;
-margin-bottom: 30px;
+.title-cards {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 0 3%
 }
 
-.title-cards h2{
-margin-bottom: 8px;
+.title-cards h2 {
+  margin-bottom: 12px;
+  font-size: 1.4vw;
+  font-weight: 700;
 }
-.card-list{
+
+.card-list {
   display: flex;
-  gap: 10px;
-  overflow-x: auto; /* keep default scroll behavior */
-  scroll-behavior: smooth; /* smooth scrolling */
+  gap: 8px; /* Reduced gap for Netflix style */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0; /* Add padding for scroll area */
 }
 
-.card-list::-webkit-scrollbar{
-    display: none; 
+.card-list::-webkit-scrollbar {
+  display: none;
 }
 
-.card-list img{
-width: 240px;
-border-radius: 4px;
-cursor: pointer;
+.card-list img {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .card-list .card {
   position: relative;
+  flex-shrink: 0; /* Prevent cards from shrinking */
+  width: 240px; /* Fixed width for consistent sizing */
+  aspect-ratio: 16/9; /* Maintain aspect ratio */
+}
+
+.card-list .card:hover img {
+  transform: scale(1.05); /* Netflix hover effect */
 }
 
 .card-list .card p {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  text-decoration: none;
+  bottom: 8px;
+  right: 8px;
   color: white;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Netflix-style responsive adjustments */
+@media (max-width: 1200px) {
+  .title-cards h2 {
+    font-size: 1.6vw;
+  }
+  
+  .card-list .card {
+    width: 220px;
+  }
+}
+
+@media (max-width: 968px) {
+  .title-cards {
+    margin-top: 40px;
+    margin-bottom: 25px;
+    padding: 0 3%;
+  }
+  
+  .title-cards h2 {
+    font-size: 18px;
+  }
+  
+  .card-list .card {
+    width: 200px;
+  }
+  
+  .card-list .card p {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-cards {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 0 3%;
+  }
+  
+  .title-cards h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .card-list .card {
+    width: 160px;
+  }
+  
+  .card-list {
+    gap: 6px;
+  }
+  
+  .card-list .card p {
+    font-size: 0.6rem;
+    bottom: 6px;
+    right: 6px;
+  }
+}
+
+@media (max-width: 500px) {
+  .title-cards {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    padding: 0 3%;
+  }
+  
+  .title-cards h2 {
+    font-size: 14px;
+  }
+  
+  .card-list .card {
+    width: 140px;
+  }
+  
+  .card-list {
+    gap: 4px;
+  }
+  
+  .card-list .card p {
+    font-size: 0.5rem;
+    bottom: 4px;
+    right: 4px;
+    padding: 1px 3px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+  .card-list .card {
+    width: 120px;
+  }
+  
+  .title-cards h2 {
+    font-size: 13px;
+  }
 }

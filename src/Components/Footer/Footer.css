@@ -19,7 +19,23 @@ cursor: pointer;
     margin-bottom: 30px;
     list-style: none;
 }
+
+.footer-ul li {
+    cursor: pointer;
+}
 .copyright-text {
     color: gray;
     font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .footer-icons img {
+    width: 25px;
+  }
+
+  .footer ul {
+    grid-template-columns: auto auto;
+    gap: 8px;
+    font-size: 14px;
+  }
 }
