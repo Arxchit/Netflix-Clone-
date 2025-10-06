@@ -56,6 +56,15 @@
   font-weight: 500;
   margin-top: 20px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-form button:hover {
+  background: #c80c16;
+}
+
+.login-form button:active {
+  background: #b8070f;
 }
 
 .form-help {

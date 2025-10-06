@@ -4,12 +4,13 @@ import search from '../../assets/search_icon.svg'
 import bellIcon from '../../assets/bell_icon.svg'
 import profile from '../../assets/profile_img.png'
 import caret_icon from '../../assets/caret_icon.svg'
-import { FaBars, FaTimes } from 'react-icons/fa'   // ✅ added react icons
+import { FaBars, FaTimes } from 'react-icons/fa'
 import { logOut } from '../../fireBase'
 
 const Navbar = () => {
   const navRef = useRef()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false) 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,22 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  // ✅ Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownOpen && !event.target.closest('.navbar-profile')) {
+        setDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [dropdownOpen])
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen)
+  }
 
   return (
     <div className='navBar' ref={navRef}>
@@ -45,10 +62,10 @@ const Navbar = () => {
         <p>Children</p>
         <img src={bellIcon} alt="" className='icons' />
 
-        <div className="navbar-profile">
+        <div className="navbar-profile" onClick={toggleDropdown}> 
           <img src={profile} alt="" className='profile' />
           <img src={caret_icon} alt="" />
-          <div className="dropdown">
+          <div className={`dropdown ${dropdownOpen ? 'active' : ''}`}> 
             <p onClick={() => logOut()}>Sign Out of Netflix</p>
           </div>
         </div>

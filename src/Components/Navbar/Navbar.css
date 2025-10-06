@@ -115,6 +115,10 @@
   display: block;
 }
 
+.dropdown.active {
+  display: block;
+}
+
 /* --- Scroll effect --- */
 .nav-dark {
   background: #141414;
