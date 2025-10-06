@@ -1,21 +1,26 @@
 .hero {
     position: relative;
+    height: 80vh; /* Add this */
+    min-height: 500px; /* Add this */
 }
 
 .banner-img {
     width: 100%;
-    mask-image: linear-gradient(to right , transparent, black 75% );
-    -webkit-mask-image: linear-gradient(to right , transparent, black 75% );
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    mask-image: linear-gradient(to right, transparent, black 75%);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 75%);
 }
 
 .hero-caption {
     position: absolute;
     width: 100%;
-    padding-left:6% ;
-    bottom: 0;
+    padding-left: 6%;
+    bottom: -117px;
 }
 
-.caption-img {
+.hero-capImg {
     width: 90%;
     max-width: 420px;
     margin-bottom: 30px;
@@ -26,7 +31,6 @@
     font-size: 17px;
     margin-bottom: 20px;
     padding-top: 20px;
-
 }
 
 .hero-btns {
@@ -35,7 +39,7 @@
     margin-bottom: 50px;
 }
 
-.hero-btns .btn img{
+.hero-btns .btn img {
     width: 25px;
 }
 
@@ -58,16 +62,102 @@
     background: #6d6d6eb3;
 }
 
-.hero-btns .btn:hover{
+.hero-btns .btn:hover {
     background: #ffffffbf;
 }
 
-.hero-btns .dark-btn:hover{
+.hero-btns .dark-btn:hover {
     background: #6d6d6e66;
 }
 
 .more-cards {
     padding-left: 6%;
+    padding-top: 90px;
 }
 
-/* Responsive */
+/* Responsive - Clean version */
+@media (max-width: 768px) {
+    .hero {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
+    .hero-caption p {
+        max-width: 500px;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .hero-capImg {
+        max-width: 320px;
+        margin-bottom: 20px;
+    }
+    
+    .hero-btns {
+        margin-bottom: 30px;
+    }
+    
+    .hero-btns .btn {
+        padding: 6px 16px;
+        font-size: 14px;
+    }
+    
+    .hero-btns .btn img {
+        width: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .hero {
+        height: 50vh;
+        min-height: 300px;
+    }
+    
+    .hero-caption p {
+        max-width: 350px;
+        font-size: 13px;
+        margin-bottom: 12px;
+        padding-top: 15px;
+    }
+    
+    .hero-capImg {
+        max-width: 250px;
+        margin-bottom: 15px;
+    }
+    
+    .hero-btns {
+        margin-bottom: 20px;
+        gap: 8px;
+    }
+    
+    .hero-btns .btn {
+        padding: 5px 12px;
+        font-size: 12px;
+        gap: 6px;
+    }
+    
+    .hero-btns .btn img {
+        width: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero {
+        height: 45vh;
+        min-height: 250px;
+    }
+    
+    .hero-caption p {
+        font-size: 12px;
+        max-width: 280px;
+    }
+    
+    .hero-capImg {
+        max-width: 200px;
+    }
+    
+    .hero-btns .btn {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+}
